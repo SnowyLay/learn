@@ -21,4 +21,8 @@ public class PlayerService {
     public List<Player> getPlayers(){
         return playerDao.findAll();
     }
+
+    public Player addPlayer(Player player){
+        return playerDao.save(player);
+    }
 }

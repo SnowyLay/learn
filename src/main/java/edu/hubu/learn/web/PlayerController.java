@@ -35,4 +35,18 @@ public class PlayerController {
         mav.setViewName("players");
         return mav;
     }
+    @RequestMapping("/add")
+    public ModelAndView addPlayer() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("player_add");
+        return mav;
+    }    
+    @RequestMapping("/do_add")
+    public ModelAndView doAddUser(Player player) {
+        player.setGender("");
+        player.setExperience("");
+        playerService.addPlayer(player);
+        ModelAndView mav = new ModelAndView("redirect:/player/list");
+        return mav;
+    }
 }
