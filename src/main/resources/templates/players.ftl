@@ -23,10 +23,22 @@
   <li role="presentation"><a href="/player/search">搜索</a></li>
 </ul>
 <table class="table table-bordered">
+<tr>
+<td>姓名</td>
+<td>性别</td>
+<td>生日</td>
+<td>经历</td>
+<td>删除</td>
+<td>修改</td>
+</tr>
 <#list players as players>
 <tr>
+<td>${players.name}</td>
 <td>${players.gender}</td>
 <td>${players.birth}</td>
+<td>${players.experience}</td>
+<td><a href="delete/${players.id}">删除</a></td>
+<td><a href="modify/${players.id}">修改</a></td>
 </tr>
 </#list>
 </table>

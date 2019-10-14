@@ -25,4 +25,12 @@ public class PlayerService {
     public Player addPlayer(Player player){
         return playerDao.save(player);
     }
+
+    public void deletePlayer(Long id){
+        playerDao.deleteById(id);
+    }
+
+    public void modifyPlayer(Player player){
+        playerDao.save(player);
+    }
 }

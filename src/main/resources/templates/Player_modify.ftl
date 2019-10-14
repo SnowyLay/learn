@@ -1,6 +1,7 @@
- <html>
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
@@ -15,30 +16,39 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
-</head>
-<body>
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="player/list">列表</a></li>
-  <li role="presentation" class="active"><a href="/player/add">新增</a></li>
+  </head>
+  <body>
+  <ul class="nav nav-tabs">
+  <li role="presentation"><a href="/player/list">列表</a></li>
+  <li role="presentation"><a href="/player/add">增加</a></li>
+  <li role="presentation" class="active"><a href="/player/modify">修改</a></li>
   <li role="presentation"><a href="/player/search">搜索</a></li>
 </ul>
- <form action="/player/do_add">
+    <form action="/player/do_modify">
+    <input type="hidden" class="form-control" id="id" name="id" value="${player.id}" >
             <div class="form-group">
                 <label for="name">姓名</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="请输入选手名字">
+                <input type="text" class="form-control" id="name" name="name" value="${player.name}" placeholder="请输入选手名字">
             </div>
             <div class="form-group">
                 <label for="gender">性别</label>
-                <input type="text" class="form-control" id="gender" name="gender" placeholder="请输入选手性别">
+                <input type="text" class="form-control" id="gender" name="gender" value="${player.gender}" placeholder="请输入选手性别">
             </div>
             <div class="form-group">
                 <label for="birth">生日</label>
-                <input type="text" class="form-control" id="birth" name="birth" placeholder="请输入选手生日">
+                <input type="text" class="form-control" id="birth" name="birth" value="${player.birth}" placeholder="请输入选手生日">
             </div>
             <div class="form-group">
                 <label for="experience">经历</label>
-                <input type="text" class="form-control" id="experience" name="experience" placeholder="请输入选手经历">
+                <input type="text" class="form-control" id="experience" name="experience" value="${player.experience}" placeholder="请输入选手经历">
             </div>
             <button type="submit" class="btn btn-default">确认</button>
-</form>
+        </form>
+
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+  </body>
 </html>

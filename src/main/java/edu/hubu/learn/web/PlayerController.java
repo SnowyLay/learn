@@ -27,6 +27,12 @@ public class PlayerController {
         return mav;
     }
 
+    @RequestMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        playerService.deletePlayer(id);
+        ModelAndView mav = new ModelAndView("redirect:/player/list");
+        return mav;
+    }
     @RequestMapping("/list")
     public ModelAndView player() {
         ModelAndView mav = new ModelAndView();
@@ -42,10 +48,23 @@ public class PlayerController {
         return mav;
     }    
     @RequestMapping("/do_add")
-    public ModelAndView doAddUser(Player player) {
-        player.setGender("");
-        player.setExperience("");
+    public ModelAndView doAddPlayer(Player player) {
         playerService.addPlayer(player);
+        ModelAndView mav = new ModelAndView("redirect:/player/list");
+        return mav;
+    }
+
+    @RequestMapping("/modify/{id}")
+    public ModelAndView modifyPlayer(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("player",playerService.getPlayer(id));
+        mav.setViewName("player_modify");
+        return mav;
+    }    
+
+    @RequestMapping("/do_modify")
+    public ModelAndView doModifyPlayer(Player player) {
+        playerService.modifyPlayer(player);
         ModelAndView mav = new ModelAndView("redirect:/player/list");
         return mav;
     }
