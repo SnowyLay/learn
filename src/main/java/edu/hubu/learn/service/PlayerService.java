@@ -3,6 +3,10 @@ package edu.hubu.learn.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import edu.hubu.learn.dao.PlayerDao;
@@ -19,7 +23,16 @@ public class PlayerService {
     }
 
     public List<Player> getPlayers(){
-        return playerDao.findAll();
+        return playerDao.findAll(new Sort(Direction.DESC, "id"));
+    }
+
+    public List<Player> searchPlayers(String keyword) {
+        Player player = new Player();
+        player.setName(keyword);
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match->match.contains());
+        Example<Player> example = Example.of(player, matcher);
+        Sort sort = new Sort(Direction.DESC, "id");
+        return playerDao.findAll(example, sort);
     }
 
     public Player addPlayer(Player player){

@@ -2,6 +2,8 @@ package edu.hubu.learn.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,6 +68,23 @@ public class PlayerController {
     public ModelAndView doModifyPlayer(Player player) {
         playerService.modifyPlayer(player);
         ModelAndView mav = new ModelAndView("redirect:/player/list");
+        return mav;
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView searchPlayer() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("player_search");
+        return mav;
+    }
+
+    @RequestMapping("/do_search")
+    public ModelAndView doSearchPlayer(HttpServletRequest httpRequest) {
+        ModelAndView mav = new ModelAndView();
+        String keyword = httpRequest.getParameter("keyword");
+        List<Player> players = playerService.searchPlayers(keyword);
+        mav.addObject("players", players);
+        mav.setViewName("players");
         return mav;
     }
 }
